@@ -4,14 +4,22 @@ on:
   push:
     branches: [ main ]
     paths:
+      - 'gradle/**'
+      - '**.gradle'
+      - 'gradle.properties'
       - 'sd-app/**'
       - 'sd-ft/**'
+      - 'lombok.config'
       - '.github/workflows/sonarcloud-analyses.yml'
   pull_request:
     branches: [ main ]
     paths:
+      - 'gradle/**'
+      - '**.gradle'
+      - 'gradle.properties'
       - 'sd-app/**'
       - 'sd-ft/**'
+      - 'lombok.config'
       - '.github/workflows/sonarcloud-analyses.yml'
 
 jobs:
