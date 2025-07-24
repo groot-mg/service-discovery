@@ -7,8 +7,8 @@ on:
       - 'gradle/**'
       - '**.gradle'
       - 'gradle.properties'
-      - 'sd-app/**'
-      - 'sd-ft/**'
+      - 'app/**'
+      - 'ft/**'
       - '.github/workflows/pr-build.yml'
   workflow_dispatch:
     inputs:
@@ -36,7 +36,7 @@ jobs:
           distribution: 'temurin'
 
       - name: Build + unit tests
-        run: ./gradlew :sd-app:build
+        run: ./gradlew :app:build
 
       - name: Upload unit tests report
         if: always()
@@ -44,13 +44,13 @@ jobs:
         with:
           name: unit-tests-report
           path: |
-            sd-app/build/reports/tests/test/**/*
+            app/build/reports/tests/test/**/*
 
       - name: Upload JAR
         uses: actions/upload-artifact@v4
         with:
           name: app-jar
-          path: sd-app/build/libs/service-discovery.jar
+          path: app/build/libs/service-discovery.jar
 
   pr-functional-tests:
     needs: build-and-unit-tests
@@ -69,10 +69,10 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: app-jar
-          path: sd-app/build/libs/
+          path: app/build/libs/
 
       - name: Start Spring Boot app
-        run: java -jar sd-app/build/libs/service-discovery.jar &
+        run: java -jar app/build/libs/service-discovery.jar &
 
       - name: Wait for Spring Boot to start
         run: |
@@ -80,12 +80,12 @@ jobs:
           sleep 3
 
       - name: Run functional tests
-        run: ./gradlew --no-daemon :sd-ft:cucumber
+        run: ./gradlew --no-daemon :ft:cucumber
 
       - name: Stop Spring Boot app
         run: |
           echo "Stopping Spring Boot app..."
-          pkill -f 'java -jar sd-app/build/libs/service-discovery.jar'
+          pkill -f 'java -jar app/build/libs/service-discovery.jar'
 
       - name: Archive Cucumber test reports
         if: always()
@@ -93,7 +93,7 @@ jobs:
         with:
           name: cucumber-tests-report
           path: |
-            sd-ft/reports/cucumber-report.html
+            ft/reports/cucumber-report.html
 
   pr-build-docker-image:
     needs: build-and-unit-tests
@@ -106,7 +106,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: app-jar
-          path: sd-app/build/libs/
+          path: app/build/libs/
 
       - name: Build Docker Image
-        run: docker build -t myapp:${{ github.sha }} sd-app/
+        run: docker build -t myapp:${{ github.sha }} app/

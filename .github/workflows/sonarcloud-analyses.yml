@@ -7,8 +7,8 @@ on:
       - 'gradle/**'
       - '**.gradle'
       - 'gradle.properties'
-      - 'sd-app/**'
-      - 'sd-ft/**'
+      - 'app/**'
+      - 'ft/**'
       - 'lombok.config'
       - '.github/workflows/sonarcloud-analyses.yml'
   pull_request:
@@ -17,8 +17,8 @@ on:
       - 'gradle/**'
       - '**.gradle'
       - 'gradle.properties'
-      - 'sd-app/**'
-      - 'sd-ft/**'
+      - 'app/**'
+      - 'ft/**'
       - 'lombok.config'
       - '.github/workflows/sonarcloud-analyses.yml'
 

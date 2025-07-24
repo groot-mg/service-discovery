@@ -2,7 +2,7 @@ spring:
   jmx:
     enabled: false
   application:
-    name: sd-functional-tests
+    name: functional-tests
   profiles:
     active: local
 

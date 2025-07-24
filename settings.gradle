@@ -1,4 +1,4 @@
 rootProject.name = 'service-discovery'
-include 'sd-app'
-include 'sd-ft'
+include 'app'
+include 'ft'
 

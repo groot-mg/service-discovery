@@ -33,16 +33,16 @@ jobs:
           distribution: 'temurin'
 
       - name: Build
-        run: ./gradlew :sd-app:build -x test
+        run: ./gradlew :app:build -x test
 
       - name: Generate release version
-        run: ./gradlew :sd-app:release
+        run: ./gradlew :app:release
 
       - name: Upload JAR
         uses: actions/upload-artifact@v4
         with:
           name: app-jar
-          path: sd-app/build/libs/service-discovery.jar
+          path: app/build/libs/service-discovery.jar
 
   publish-docker-image:
     needs: build-and-release
@@ -63,12 +63,12 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: app-jar
-          path: sd-app/build/libs/
+          path: app/build/libs/
 
       - name: Get version
         id: get_version
         run: |
-          VERSION=$(./gradlew sd-app:currentVersion -q --console=plain | grep -oP '(?<=Project version: )[\d\.]+')
+          VERSION=$(./gradlew app:currentVersion -q --console=plain | grep -oP '(?<=Project version: )[\d\.]+')
           echo "VERSION=$VERSION" >> $GITHUB_ENV
 
       - name: Log in to the Container registry
@@ -90,7 +90,7 @@ jobs:
         id: push
         uses: docker/build-push-action@v6
         with:
-          context: sd-app/
+          context: app/
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
