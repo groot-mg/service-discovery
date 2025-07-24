@@ -23,7 +23,7 @@ on:
           - debug
 
 jobs:
-  build-and-unit-tests:
+  pr-build-and-unit-tests:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -52,7 +52,7 @@ jobs:
           name: app-jar
           path: sd-app/build/libs/service-discovery.jar
 
-  functional-tests:
+  pr-functional-tests:
     needs: build-and-unit-tests
     runs-on: ubuntu-latest
     steps:
@@ -95,7 +95,7 @@ jobs:
           path: |
             sd-ft/reports/cucumber-report.html
 
-  build-docker-image:
+  pr-build-docker-image:
     needs: build-and-unit-tests
     runs-on: ubuntu-latest
     steps:
