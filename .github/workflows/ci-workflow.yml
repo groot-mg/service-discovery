@@ -9,7 +9,8 @@ on:
       - 'gradle.properties'
       - 'sd-app/**'
       - 'sd-ft/**'
-      - '.github/workflows/sd-ci-cd.yml'
+      - 'lombok.config'
+      - '.github/workflows/ci-workflow.yml'
 
   workflow_dispatch:
     inputs:
