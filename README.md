@@ -5,6 +5,11 @@ The purpose of a service discovery is load balancing and failover of middle-tier
 
 Each service will self register in the service discovery and the API Gateway responsible for receiving the user requests, will forward the requests to the registered services in the service discovery.
 
+### References
+
+* The eureka [docs](https://cloud.spring.io/spring-cloud-netflix/reference/html/)
+* [Configuration properties](https://docs.spring.io/spring-cloud-netflix/reference/configprops.html)
+
 ## Build, tests and run
 
 ### Build + unit tests
