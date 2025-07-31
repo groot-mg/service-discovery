@@ -12,7 +12,7 @@ public enum Endpoint {
     PRIVATE_HEALTH_CHECK("/private/health", "GET"),
     PRIVATE_METRICS("/private/metrics", "GET"),
     GET_APPS("/eureka/v2/apps", "GET"),
-    ADD_APP("/eureka/apps", "POST");
+    ADD_APP("/eureka/v2/apps", "POST");
 
     private final String path;
     private final String method;

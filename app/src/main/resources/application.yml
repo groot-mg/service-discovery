@@ -6,7 +6,7 @@ spring:
   profiles:
     active: local
 server:
-  port: 8081 # 8761
+  port: 8081
 
 eureka:
   dashboard:
@@ -17,13 +17,6 @@ eureka:
     fetch-registry: false
     service-url:
       defaultZone: http://localhost:${server.port}/eureka/
-
-logging:
-  level:
-    com:
-      netflix:
-        discovery: OFF
-        eureka: OFF
 
 management:
   endpoint:
@@ -43,3 +36,10 @@ management:
   metrics:
     tags:
       application: ${spring.application.name}
+
+logging:
+  level:
+    com:
+      netflix:
+        discovery: INFO
+        eureka: INFO

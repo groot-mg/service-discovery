@@ -3,13 +3,14 @@ package com.generoso.ft.sd.state;
 import com.generoso.ft.sd.client.RequestTemplate;
 import io.cucumber.spring.ScenarioScope;
 import lombok.Setter;
+import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Component;
 
 import java.net.http.HttpResponse;
 
 @Setter
 @Component
-@ScenarioScope
+@ScenarioScope(proxyMode = ScopedProxyMode.NO)
 public class ScenarioState {
 
     private RequestTemplate requestTemplate;
