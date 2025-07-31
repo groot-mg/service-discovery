@@ -1,0 +1,11 @@
+services:
+  app:
+    build: app
+    restart: always
+    ports:
+      - "8081:8081"
+    healthcheck:
+      test: "curl --fail --silent http://localhost:8081/private/health | grep UP || exit 1"
+      interval: 20s
+      timeout: 5s
+      retries: 5
