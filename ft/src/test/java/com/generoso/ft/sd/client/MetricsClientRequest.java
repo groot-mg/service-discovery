@@ -15,22 +15,22 @@ import java.util.List;
 @AllArgsConstructor(onConstructor_ = @__(@Autowired))
 public class MetricsClientRequest {
 
-    private final PrivateMetricsRequestTemplate privateMetricsRequestTemplate;
+	private final PrivateRequestTemplate.PrivateMetricsRequestTemplate privateMetricsRequestTemplate;
 
-    private final Client client;
+	private final Client client;
 
-    public List<MetricFamily> collectMetrics() {
-        var response = client.execute(privateMetricsRequestTemplate);
-        return parsePrometheusMetrics(response.body());
-    }
+	public List<MetricFamily> collectMetrics() {
+		var response = client.execute(privateMetricsRequestTemplate);
+		return parsePrometheusMetrics(response.body());
+	}
 
-    private List<MetricFamily> parsePrometheusMetrics(String metricEndpointResponseBody) {
-        var inputStream = new ByteArrayInputStream(metricEndpointResponseBody.getBytes(StandardCharsets.UTF_8));
+	private List<MetricFamily> parsePrometheusMetrics(String metricEndpointResponseBody) {
+		var inputStream = new ByteArrayInputStream(metricEndpointResponseBody.getBytes(StandardCharsets.UTF_8));
 
-        var collector = new CollectorPrometheusMetricsWalker();
-        var processor = new TextPrometheusMetricsProcessor(inputStream, collector);
-        processor.walk();
+		var collector = new CollectorPrometheusMetricsWalker();
+		var processor = new TextPrometheusMetricsProcessor(inputStream, collector);
+		processor.walk();
 
-        return collector.getAllMetricFamilies();
-    }
+		return collector.getAllMetricFamilies();
+	}
 }

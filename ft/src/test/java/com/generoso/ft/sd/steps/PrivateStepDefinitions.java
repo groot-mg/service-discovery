@@ -64,9 +64,9 @@ public class PrivateStepDefinitions {
     }
 
     @Then("the response body contains:")
-    public void theResponseBodyContains(List<String> keys) throws JsonProcessingException {
-        var jsonResponse = objectMapper.readTree(scenarioState.getActualResponseBody());
-        keys.forEach(keyName -> assertTrue(jsonResponse.has(keyName)));
+    public void theResponseBodyContains(List<String> values){
+		values.forEach(v ->  assertTrue(scenarioState.getActualResponseBody().contains(v), () ->
+				"Didn't find the metric: " + v));
     }
 
     private RequestTemplate getRequestTemplate(Endpoint endpoint) {
