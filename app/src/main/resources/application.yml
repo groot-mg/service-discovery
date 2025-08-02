@@ -9,6 +9,9 @@ server:
   port: 8081
 
 eureka:
+  server:
+    metrics:
+      enabled: true
   dashboard:
     enabled: false
     path: /dashboard
