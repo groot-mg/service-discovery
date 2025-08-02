@@ -16,8 +16,10 @@ public class PrivateRequestTemplate {
 	public static class PrivateHealthRequestTemplate extends RequestTemplate {
 
 		@Autowired
-		public PrivateHealthRequestTemplate(@Value("${service.host}") String host,
-											@Value("${service.context-path:}") String contextPath) {
+		public PrivateHealthRequestTemplate(
+			@Value("${service.host}") String host,
+			@Value("${service.context-path:}") String contextPath
+		) {
 			super(host, contextPath);
 		}
 
@@ -31,8 +33,10 @@ public class PrivateRequestTemplate {
 	@Qualifier("private")
 	public static class PrivateInfoRequestTemplate extends RequestTemplate {
 
-		public PrivateInfoRequestTemplate(@Value("${service.host}") String host,
-										  @Value("${service.context-path:}") String contextPath) {
+		public PrivateInfoRequestTemplate(
+			@Value("${service.host}") String host,
+			@Value("${service.context-path:}") String contextPath
+		) {
 			super(host, contextPath);
 		}
 
@@ -46,8 +50,10 @@ public class PrivateRequestTemplate {
 	@Qualifier("private")
 	public static class PrivateMetricsRequestTemplate extends RequestTemplate {
 
-		public PrivateMetricsRequestTemplate(@Value("${service.host}") String host,
-											 @Value("${service.context-path:}") String contextPath) {
+		public PrivateMetricsRequestTemplate(
+			@Value("${service.host}") String host,
+			@Value("${service.context-path:}") String contextPath
+		) {
 			super(host, contextPath);
 		}
 
