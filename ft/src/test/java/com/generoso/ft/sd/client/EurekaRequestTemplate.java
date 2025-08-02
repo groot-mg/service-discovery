@@ -25,41 +25,4 @@ public class EurekaRequestTemplate {
 			return Endpoint.GET_APPS;
 		}
 	}
-
-
-	@Component
-	@Qualifier("serviceRequest")
-	public static class AddAppRequestTemplate extends RequestTemplate {
-
-		@Autowired
-		public AddAppRequestTemplate(
-			@Value("${service.host}") String host,
-			@Value("${service.context-path:}") String contextPath
-		) {
-			super(host, contextPath);
-		}
-
-		@Override
-		public Endpoint getEndpoint() {
-			return Endpoint.ADD_APP;
-		}
-	}
-
-	@Component
-	@Qualifier("serviceRequest")
-	public static class UpdateAppRequestTemplate extends RequestTemplate {
-
-		@Autowired
-		public UpdateAppRequestTemplate(
-			@Value("${service.host}") String host,
-			@Value("${service.context-path:}") String contextPath
-		) {
-			super(host, contextPath);
-		}
-
-		@Override
-		public Endpoint getEndpoint() {
-			return Endpoint.UPDATE_APP;
-		}
-	}
 }

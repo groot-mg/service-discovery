@@ -4,8 +4,6 @@ import com.generoso.ft.sd.client.Client;
 import com.generoso.ft.sd.client.RequestTemplate;
 import com.generoso.ft.sd.client.model.Endpoint;
 import com.generoso.ft.sd.state.ScenarioState;
-import com.generoso.ft.sd.util.RequestBodies;
-import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
 import lombok.RequiredArgsConstructor;
@@ -24,18 +22,6 @@ public class RequestStepDefinitions {
 	public void anEndpointIsPrepared(Endpoint endpoint) {
 		var requestTemplate = getRequestTemplate(endpoint);
 		scenarioState.setRequestTemplate(requestTemplate);
-	}
-
-	@Given("an endpoint {} is prepared with path parameter {word}")
-	public void anEndpointIsPreparedWithPathParameter(Endpoint endpoint, String pathParameter) {
-		var requestTemplate = getRequestTemplate(endpoint);
-		requestTemplate.pathParameter(pathParameter);
-		scenarioState.setRequestTemplate(requestTemplate);
-	}
-
-	@And("a request body is prepared for {word}")
-	public void aRequestBodyIsPreparedFor(String requestBodyKey) {
-		scenarioState.getRequestTemplate().body(RequestBodies.getBody(requestBodyKey));
 	}
 
 	@When("the request is sent")
