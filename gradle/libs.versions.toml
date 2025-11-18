@@ -9,7 +9,7 @@ sonarqubeVersion = '7.0.1.6134'
 
 ## Library versions
 eurekaServerVersion = '4.3.0'
-owaspEncoderVersion = '1.3.1'
+owaspEncoderVersion = '1.4.0'
 awaitilityVersion = '4.3.0'
 
 ## Test Libraries
